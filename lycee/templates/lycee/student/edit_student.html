@@ -1,0 +1,38 @@
+{% extends 'master.html' %}
+{% load static %}
+{% if liste %}
+    {% block title %}
+        Detail of a student
+    {% endblock %}
+    {% block content %}
+        <div class='container'>
+            <div class='row'>
+                <form action="/lycee/student/{{ liste.id }}">
+                    <label for="fname">First name:</label><br>
+                    <input type="text" id="fname" name="fname" value="{{ liste.first_name }}"><br>
+                    <label for="lname">Last name:</label><br>
+                    <input type="text" id="lname" name="lname" value="{{ liste.last_name }}"><br>
+                    <label for="lname">Birth date:</label><br>
+                    <input type="date" id="birth" name="birth" value="{{ liste.birth_date | date:"Y-m-d" }}"><br>
+                    <label for="lname">Mail:</label><br>
+                    <input type="email" id="mail" name="mail" value="{{ liste.mail }}"><br>
+                    <label for="lname">Cursus:</label><br>
+                    <select id="cursus" name="cursus">
+                        {% for cursus in listeCursus %}
+                            <option value="{{ cursus.id }}"
+                            {% if cursus.name == liste.cursus.name %}
+                                        selected
+                                    {% endif %}>{{ cursus.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <label for="fname">Comment:</label><br>
+                    <input type="text" id="comments" name="comments" value="{{ liste.comment }}"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+    <p>No student to show</p>
+{% endif %}

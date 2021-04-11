@@ -1,0 +1,21 @@
+{% extends 'master.html' %} 
+{% load static %} 
+{%if student %}
+{% block title%}
+{{ cursus_name }}
+{% endblock %} 
+{% block content%}
+<div class='container'>
+	{% for student in student%}
+	<div class='row'>
+		<div class='col-sm-2'>
+			<a href="/lycee/student/{{ student.id }}">{{student.last_name}} {{ student.first_name }}
+			</a>
+		</div>
+	</div>
+	{%endfor%}
+</div>
+{% endblock %} 
+{%else%}
+<p>No cursus to show</p>
+{%endif%}

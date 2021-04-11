@@ -1,0 +1,21 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block title %}
+    Call of Roll
+{% endblock %}
+{% block content %}
+    <div class='container'>
+        <div class='row'>
+            <form action="/lycee/{{ cursus_id }}">
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" value="{{ date }}"><br>
+                {% for student in students %}
+                    <input type="checkbox" id="{{ student.id }}" name="{{ student.id }}">
+                    <label for="{{ student.id }}">{{ student.last_name }} {{ student.first_name }}</label>
+                    <br>
+                {% endfor %}
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

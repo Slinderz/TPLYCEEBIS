@@ -1,0 +1,28 @@
+{% extends 'master.html' %} 
+{% load static %} 
+{%if liste %} 
+{% block title%} 
+Detail of a student
+{% endblock %} 
+{% block content%}
+<div class='container'>
+	<div class='row'>
+		<div class='col-sm-2'>
+			<h3>{{liste.first_name}} {{liste.last_name}}
+			</h3>
+      {{liste.birth_date}}
+      {{liste.mail}}
+      {{liste.cursus}}
+      {{liste.comments}}
+		</div>
+	</div>
+    <a href="/lycee/student/edit/{{ liste.id }}">
+        <button>
+            Edit student data
+        </button>
+    </a>
+</div>
+{% endblock %} 
+{%else%}
+<p>No student to show</p>
+{%endif%}

@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from lycee import views, request
+from lycee.views import StudentCreateView, CallOfRoll
 
 urlpatterns = [
-    path('admin/', admin.site.urls),    
+    path('admin/', admin.site.urls),
+    path('lycee/', views.index, name='index'),
+    path('lycee/<int:cursus_id>', views.detail, name='detail'),
+    path('lycee/student/<int:student_id>', views.detail_student, name='detail_student'),
+    path('lycee/student/create', StudentCreateView.as_view(), name=' create_student'),
+    path('lycee/student/edit/<int:student_id>', views.edit_student, name=' edit_student'),
+    path('lycee/cursuscall/<int:cursus_id>', views.call_of_roll_cusus, name=' Call of roll'),
+    path('lycee/particularCall', CallOfRoll.as_view(), name=' Call of roll'),
 ]
